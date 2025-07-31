@@ -1,36 +1,51 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CraftingManager : MonoBehaviour
 {
-    public static CraftingManager Instance { get; private set; }
+    public static CraftingManager instance;
 
-    public List<string> requiredItems = new List<string> { "Item1", "Item2", "Item3" };
-    private List<string> collectedItems = new List<string>();
+    public CraftingRecipe[] recipes;
 
-    private void Awake()
+    void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null)
         {
-            Destroy(gameObject);
+            Debug.LogWarning("More than one instance of CraftingManager found!");
+            return;
         }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        instance = this;
     }
 
-    public void CollectItem(string itemName)
+    public bool Craft(Item[] inputItems, out Item outputItem)
     {
-        if (!collectedItems.Contains(itemName))
+        foreach (CraftingRecipe recipe in recipes)
         {
-            collectedItems.Add(itemName);
+            if (CheckRecipe(recipe, inputItems))
+            {
+                outputItem = recipe.outputItem;
+                return true;
+            }
         }
+
+        outputItem = null;
+        return false;
     }
 
-    public bool CheckRequiredItems()
+    private bool CheckRecipe(CraftingRecipe recipe, Item[] inputItems)
     {
-        return new HashSet<string>(collectedItems).SetEquals(requiredItems);
+        if (recipe.inputItems.Length != inputItems.Length)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < recipe.inputItems.Length; i++)
+        {
+            if (recipe.inputItems[i] != inputItems[i])
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
