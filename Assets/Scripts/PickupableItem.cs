@@ -6,6 +6,11 @@ public class PickupableItem : Interactable
 
     public string itemName = "Item";
 
+    private void Start()
+    {
+        interactionPrompt = $"Press E to pick up {itemName}";
+    }
+
     public override void Interact()
     {
         Debug.Log($"Picked up {itemName}");
