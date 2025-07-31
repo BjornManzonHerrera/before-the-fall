@@ -14,7 +14,7 @@ public class PickupableItem : Interactable
     public override void Interact()
     {
         Debug.Log($"Picked up {itemName}");
-        CraftingManager.Instance.CollectItem(itemName);
+        // CraftingManager.Instance.CollectItem(itemName); // This will be replaced with inventory logic
         Destroy(gameObject);
     }
 }
