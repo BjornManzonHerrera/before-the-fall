@@ -6,6 +6,8 @@ public class SimpleFPSController : MonoBehaviour
 {
     [Header("Player Settings")]
     public float walkSpeed = 5f;
+    public float sprintSpeed = 10f;
+    public float jumpHeight = 1.5f;
     public float lookSpeed = 2f;
     public float gravity = -9.81f;
 
@@ -16,8 +18,6 @@ public class SimpleFPSController : MonoBehaviour
     private Vector3 playerVelocity;
     private float pitch = 0f;
 
-    // This assumes you have generated a C# class from your Input Actions asset.
-    // If not, right-click the .inputactions asset and select "Create C# Script".
     private InputSystem_Actions playerActions;
 
     private void Awake()
@@ -38,10 +38,23 @@ public class SimpleFPSController : MonoBehaviour
     void Update()
     {
         HandleMovement();
+        HandleJumping();
         HandleLook();
     }
 
     private void HandleMovement()
+    {
+        // Check if the sprint button is held down
+        bool isSprinting = playerActions.Player.Sprint.ReadValue<float>() > 0;
+        float currentSpeed = isSprinting ? sprintSpeed : walkSpeed;
+
+        // Movement
+        Vector2 moveInput = playerActions.Player.Move.ReadValue<Vector2>();
+        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        controller.Move(move * currentSpeed * Time.deltaTime);
+    }
+
+    private void HandleJumping()
     {
         // Gravity
         if (controller.isGrounded && playerVelocity.y < 0)
@@ -49,10 +62,11 @@ public class SimpleFPSController : MonoBehaviour
             playerVelocity.y = -2f;
         }
 
-        // Movement
-        Vector2 moveInput = playerActions.Player.Move.ReadValue<Vector2>();
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
-        controller.Move(move * walkSpeed * Time.deltaTime);
+        // Jumping
+        if (playerActions.Player.Jump.WasPressedThisFrame() && controller.isGrounded)
+        {
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
 
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
