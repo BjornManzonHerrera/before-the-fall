@@ -11,4 +11,9 @@ public class Altar : MonoBehaviour, IInteractable
     {
         craftingUI.ToggleCraftingMenu();
     }
+
+    public string GetDescription()
+    {
+        return "An ancient altar. It seems to have some power.";
+    }
 }
