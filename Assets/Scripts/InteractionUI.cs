@@ -1,36 +1,37 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro; // Import TextMeshPro
 
 public class InteractionUI : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private Canvas uiCanvas;
-    [SerializeField] private Text interactionText;
+    [SerializeField] private TextMeshProUGUI interactionText; // Use TextMeshProUGUI
 
     private void Awake()
     {
+        // Ensure we have a canvas to work with
         if (uiCanvas == null)
         {
             uiCanvas = FindFirstObjectByType<Canvas>();
+            if (uiCanvas == null)
+            {
+                // Create a new Canvas if none exists in the scene
+                GameObject canvasObj = new GameObject("UI Canvas");
+                uiCanvas = canvasObj.AddComponent<Canvas>();
+                uiCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                canvasObj.AddComponent<UnityEngine.UI.CanvasScaler>();
+                canvasObj.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+            }
         }
     }
 
     private void Start()
     {
-        if (uiCanvas == null)
-        {
-            // Create a new Canvas if none exists
-            GameObject canvasObj = new GameObject("UI Canvas");
-            uiCanvas = canvasObj.AddComponent<Canvas>();
-            uiCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvasObj.AddComponent<CanvasScaler>();
-            canvasObj.AddComponent<GraphicRaycaster>();
-        }
-
+        // If the interaction text is not assigned, create it
         if (interactionText == null)
         {
-            interactionText = CreateText("InteractionText", "", 18, TextAnchor.LowerCenter, new Vector2(0, 50));
-            interactionText.gameObject.SetActive(false);
+            interactionText = CreateTMPText("InteractionText", "", 24, TextAlignmentOptions.Center, new Vector2(0, 50));
+            interactionText.gameObject.SetActive(false); // Start with the text hidden
         }
     }
 
@@ -51,18 +52,21 @@ public class InteractionUI : MonoBehaviour
         }
     }
 
-    private Text CreateText(string name, string text, int fontSize, TextAnchor alignment, Vector2 position)
+    private TextMeshProUGUI CreateTMPText(string name, string text, float fontSize, TextAlignmentOptions alignment, Vector2 position)
     {
         GameObject textObj = new GameObject(name);
-        textObj.transform.SetParent(uiCanvas.transform);
+        textObj.transform.SetParent(uiCanvas.transform, false); // SetParent with worldPositionStays = false
 
-        Text textComponent = textObj.AddComponent<Text>();
-        textComponent.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        textComponent.fontSize = fontSize;
-        textComponent.alignment = alignment;
-        textComponent.rectTransform.anchoredPosition = position;
-        textComponent.rectTransform.sizeDelta = new Vector2(400, 100);
+        TextMeshProUGUI tmpText = textObj.AddComponent<TextMeshProUGUI>();
+        tmpText.text = text;
+        tmpText.fontSize = fontSize;
+        tmpText.alignment = alignment;
+        
+        // Set RectTransform properties
+        RectTransform rectTransform = tmpText.rectTransform;
+        rectTransform.anchoredPosition = position;
+        rectTransform.sizeDelta = new Vector2(400, 100);
 
-        return textComponent;
+        return tmpText;
     }
 }
