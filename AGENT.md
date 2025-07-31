@@ -1,21 +1,21 @@
-he interaction system works — when I press `E`, items are picked up and Debug.Log messages confirm it. However, the **interaction UI text does not appear** when I look at interactable objects.
+I'm getting a `NullReferenceException` in my Unity project coming from the `InteractionSystem.cs` script. Here’s the error log:
 
-Here’s what I need you to help with:
+NullReferenceException: Object reference not set to an instance of an object  
+InteractionSystem.CheckForInteractable () (at Assets/Scripts/InteractionSystem.cs:59)  
+InteractionSystem.Update () (at Assets/Scripts/InteractionSystem.cs:30)  
 
-1. Review the `InteractionSystem.cs` and `InteractionUI.cs` logic.
-2. Ensure `InteractionUI.Show(string text)` is being called correctly from `InteractionSystem`.
-3. Confirm that a working Canvas and Text (or TMP) component is hooked up properly in the Unity scene.
-4. Give me instructions to verify or correct:
-   - How the `InteractionUI` script should be attached to the UI Canvas.
-   - How the Canvas should be configured (World Space vs Screen Space).
-   - Whether there are missing UI references in the Inspector.
+NullReferenceException: Object reference not set to an instance of an object  
+InteractionSystem.CheckForInteractable () (at Assets/Scripts/InteractionSystem.cs:53)  
+InteractionSystem.Update () (at Assets/Scripts/InteractionSystem.cs:30)
 
-Here's a sample Debug.Log output to prove `Interact()` is being called:
+Please help me with the following:
 
-Picked up Item3
-UnityEngine.Debug:Log (object)
-PickupableItem:Interact () (at Assets/Scripts/PickupableItem.cs:11)
-InteractionSystem:Update () (at Assets/Scripts/InteractionSystem.cs:35)
+1. Review the likely cause of the null reference based on line 53 and 59 of `CheckForInteractable()`.
+2. Suggest what variables or references may be missing (e.g. `playerCamera`, `interactionUI`, `currentInteractable`, etc.).
+3. Give me debugging steps to determine which object is `null`.
+4. Provide instructions to:
+   - Add null checks to avoid crashes.
+   - Properly assign missing references in the Unity Inspector.
+   - Validate that all objects are initialized before use.
 
-
-The logic works, I just can’t see the text prompt. Please walk me through fixing the UI visibility part.
+The script works partially — interaction with objects functions, but the error suggests something is not set correctly. I want to safely handle or fix this issue.

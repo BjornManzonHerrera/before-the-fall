@@ -18,6 +18,11 @@ public class InteractionSystem : MonoBehaviour
         cam = Camera.main;
         inputActions = new InputSystem_Actions();
         inputActions.Player.Enable(); // Enable the "Player" action map
+
+        if (interactionUI == null)
+        {
+            Debug.LogWarning("InteractionUI not set in " + name);
+        }
     }
 
     void OnDestroy()
@@ -50,13 +55,19 @@ public class InteractionSystem : MonoBehaviour
             if (interactable != currentInteractable)
             {
                 currentInteractable = interactable;
-                interactionUI.Show(currentInteractable.InteractionPrompt);
+                if(interactionUI != null)
+                {
+                    interactionUI.Show(currentInteractable.InteractionPrompt);
+                }
             }
         }
         // Otherwise, if we were looking at something, hide the UI
         else if (currentInteractable != null)
         {
-            interactionUI.Hide();
+            if (interactionUI != null)
+            {
+                interactionUI.Hide();
+            }
             currentInteractable = null;
         }
     }
