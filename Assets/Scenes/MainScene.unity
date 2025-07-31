@@ -149,9 +149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItems:
-  - Kaled's Sword
-  - Torch of Humanity
-  - Dragon Egg
+  - Item 1
+  - Item 2
+  - Item 3
 --- !u!4 &212219604
 Transform:
   m_ObjectHideFlags: 0
@@ -300,28 +300,14 @@ GameObject:
   - component: {fileID: 491267837}
   - component: {fileID: 491267836}
   - component: {fileID: 491267835}
-  - component: {fileID: 491267834}
+  - component: {fileID: 491267839}
   m_Layer: 3
-  m_Name: Torch of Humanity
+  m_Name: Item3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &491267834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491267833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e12a0766d14a0e94a8a15c1e0f87d425, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionPrompt: Pick up Torch of Humanity
-  itemName: Torch of Humanity
 --- !u!65 &491267835
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -411,6 +397,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &491267839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491267833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12a0766d14a0e94a8a15c1e0f87d425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionPrompt: Interact
+  itemName: Item3
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,28 +581,15 @@ GameObject:
   - component: {fileID: 1199184912}
   - component: {fileID: 1199184911}
   - component: {fileID: 1199184910}
-  - component: {fileID: 1199184909}
+  - component: {fileID: 1199184915}
+  - component: {fileID: 1199184914}
   m_Layer: 3
-  m_Name: Dragon Egg
+  m_Name: Item1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1199184909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199184908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e12a0766d14a0e94a8a15c1e0f87d425, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionPrompt: Pick up Dragon Egg
-  itemName: Dragon Egg
 --- !u!65 &1199184910
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -692,6 +679,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1199184914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199184908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12a0766d14a0e94a8a15c1e0f87d425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionPrompt: Interact
+  itemName: Item1
+--- !u!54 &1199184915
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199184908}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1286465165
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,12 +870,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab82a0752a5d349a20c797c5494edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDistance: 20
   interactionLayer:
     serializedVersion: 2
     m_Bits: 8
   interactionUI: {fileID: 1286465166}
-  playerCamera: {fileID: 1736447398}
 --- !u!114 &1608291451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1115,6 +1141,7 @@ GameObject:
   - component: {fileID: 1736447398}
   - component: {fileID: 1736447400}
   - component: {fileID: 1736447399}
+  - component: {fileID: 1736447402}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -1240,6 +1267,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1608291456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1736447402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736447397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ab82a0752a5d349a20c797c5494edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  interactionUI: {fileID: 1286465166}
 --- !u!1 &1822264538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,28 +1295,15 @@ GameObject:
   - component: {fileID: 1822264542}
   - component: {fileID: 1822264541}
   - component: {fileID: 1822264540}
-  - component: {fileID: 1822264539}
+  - component: {fileID: 1822264545}
+  - component: {fileID: 1822264544}
   m_Layer: 3
-  m_Name: Kelad's Sword
+  m_Name: Item2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1822264539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1822264538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e12a0766d14a0e94a8a15c1e0f87d425, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionPrompt: Pick up Kelad's Sword
-  itemName: Kelad's Sword
 --- !u!65 &1822264540
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1363,6 +1393,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1822264544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822264538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12a0766d14a0e94a8a15c1e0f87d425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionPrompt: Interact
+  itemName: Item2
+--- !u!54 &1822264545
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822264538}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1999982038
 GameObject:
   m_ObjectHideFlags: 0

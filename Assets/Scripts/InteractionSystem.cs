@@ -50,7 +50,7 @@ public class InteractionSystem : MonoBehaviour
             if (interactable != currentInteractable)
             {
                 currentInteractable = interactable;
-                interactionUI.Show(currentInteractable.GetDescription());
+                interactionUI.Show(currentInteractable.InteractionPrompt);
             }
         }
         // Otherwise, if we were looking at something, hide the UI

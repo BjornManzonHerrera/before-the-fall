@@ -1,6 +1,6 @@
 public interface IInteractable
 {
-    string GetInteractionPrompt();
+    string InteractionPrompt { get; }
     
     string GetDescription();
     float InteractionDistance { get; }

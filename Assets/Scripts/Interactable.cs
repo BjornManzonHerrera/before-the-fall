@@ -7,10 +7,7 @@ public abstract class Interactable : MonoBehaviour, IInteractable
 
     public string interactionPrompt = "Interact";
 
-    public string GetInteractionPrompt()
-    {
-        return interactionPrompt;
-    }
+    public string InteractionPrompt { get => interactionPrompt; }
 
     public string GetDescription()
     {
