@@ -38,30 +38,23 @@ public class InteractionSystem : MonoBehaviour
 
     void CheckForInteractable()
     {
-        if (cam == null)
-        {
-            return; // Exit if camera is not assigned
-        }
+        if (cam == null) return;
+
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, interactionLayer))
+        // If we hit an interactable object within range
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, interactionLayer) &&
+            hit.collider.TryGetComponent(out IInteractable interactable) &&
+            Vector3.Distance(transform.position, hit.collider.transform.position) <= interactable.InteractionDistance)
         {
-            if (hit.collider.TryGetComponent(out IInteractable interactable))
+            // If it's a new interactable, update the UI
+            if (interactable != currentInteractable)
             {
-                if (Vector3.Distance(transform.position, hit.collider.transform.position) <= interactable.InteractionDistance)
-                {
-                    // Found an interactable object
-                    if (interactable != currentInteractable)
-                    {
-                        currentInteractable = interactable;
-                        interactionUI.Show(currentInteractable.GetDescription());
-                    }
-                    return; // Exit after finding the first interactable
-                }
+                currentInteractable = interactable;
+                interactionUI.Show(currentInteractable.GetDescription());
             }
         }
-
-        // No interactable found in range
-        if (currentInteractable != null)
+        // Otherwise, if we were looking at something, hide the UI
+        else if (currentInteractable != null)
         {
             interactionUI.Hide();
             currentInteractable = null;
