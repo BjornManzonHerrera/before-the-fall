@@ -1,1 +1,0 @@
-Refactor: Decouple InteractionUI from IInteractable
